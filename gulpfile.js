@@ -93,7 +93,7 @@ gulp.task('views:main', function() {
 gulp.task('watch', function() {
     var scripts = [].concat(paths.scripts.libs, paths.scripts.src);
 
-    watch(paths.scripts, function() {
+    watch(scripts, function() {
         gulp.start('javascript');
     });
 
