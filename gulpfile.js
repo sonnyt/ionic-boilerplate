@@ -55,10 +55,14 @@ gulp.task('lint', function() {
                .pipe(jshint.reporter('default'));
 });
 
-gulp.task('javascript', function() {
-    var scripts = [].concat(paths.scripts.libs, paths.scripts.src);
+gulp.task('javascript:libs', function() {
+    return gulp.src(paths.scripts.libs)
+               .pipe(concat('libs.js'))
+               .pipe(gulp.dest('./www/js'));
+});
 
-    return gulp.src(scripts)
+gulp.task('javascript:app', function() {
+    return gulp.src(paths.scripts.src)
                .pipe(concat('app.js'))
                .pipe(uglify())
                .pipe(gulp.dest('./www/js'));
@@ -91,10 +95,8 @@ gulp.task('views:main', function() {
 });
 
 gulp.task('watch', function() {
-    var scripts = [].concat(paths.scripts.libs, paths.scripts.src);
-
-    watch(scripts, function() {
-        gulp.start('javascript');
+    watch(paths.scripts.src, function() {
+        gulp.start('javascript:app');
     });
 
     watch(paths.styles, function() {
@@ -118,7 +120,7 @@ gulp.task('watch', function() {
     });
 });
 
-gulp.task('compile', ['javascript', 'sass', 'images', 'fonts', 'views:main', 'views:partials']);
+gulp.task('compile', ['javascript:libs', 'javascript:app', 'sass', 'images', 'fonts', 'views:main', 'views:partials']);
 
 gulp.task('default', ['clean'], function() {
     gulp.start('compile');
