@@ -36,5 +36,4 @@
             '$rootScope', '$location', '$ionicPlatform',
             Run,
         ]);
-
 })();
