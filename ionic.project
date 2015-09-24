@@ -1,4 +1,13 @@
 {
   "name": "mobile",
-  "app_id": ""
+  "app_id": "",
+  "gulpStartupTasks": [
+    "watch"
+  ],
+  "documentRoot": "app",
+  "createDocumentRoot": "app",
+  "watchPatterns": [
+    "app/js/*",
+    "!app/css/**/*"
+  ]
 }
