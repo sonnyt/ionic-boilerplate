@@ -6,4 +6,3 @@ Simple ionic boilerplate
 2. `bower install`
 3. `gulp compile`
 4. `ionic state restore`
-5. `ionic platform add ios`
